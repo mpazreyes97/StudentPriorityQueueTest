@@ -4,9 +4,6 @@ import java.util.*;
 
 public class Priorities {
 
-    public Priorities() {
-    }
-
     //Time Complexity of the algorithm getStudent = O(n^2)
     public List<Student> getStudents(List<String> events) {
         StudentComparator studentComparator = new StudentComparator();
@@ -17,13 +14,13 @@ public class Priorities {
             String[] strings = splitString(event);
             if (strings[0].equals("ENTER")) { //enter a student to de priority queue
                 Student student = new Student(Integer.parseInt(
-                    strings[3]),
-                    strings[1],
-                    Double.parseDouble(strings[2]));
+                        strings[3]),
+                        strings[1],
+                        Double.parseDouble(strings[2]));
                 studentPriorityQueue.add(student);
-            } else if (strings[0].equals("SERVED")) {//serve a student
+            } else if (strings[0].equals("SERVED")) { //serve a student
                 studentPriorityQueue.poll();
-            }else{
+            } else {
                 System.err.println("Please write a valid command: ENTER <name> <cumulativeGradePointAverage> <id> or SERVED");
             }
         }
@@ -41,18 +38,4 @@ public class Priorities {
     }
 }
 
-class StudentComparator implements Comparator<Student> {
 
-    @Override
-    public int compare(Student student1, Student student2) {
-        if (student1.getCumulativeGradePointAverage() == student2.getCumulativeGradePointAverage()) {
-            if (student1.getName().compareTo(student2.getName()) == 0) {
-                return Integer.compare(student1.getId(), student2.getId());
-            } else {
-                return student1.getName().compareTo(student2.getName());
-            }
-        } else {
-            return Double.compare(student1.getCumulativeGradePointAverage(), student2.getCumulativeGradePointAverage()) * -1;
-        }
-    }
-}
