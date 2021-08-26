@@ -7,7 +7,7 @@ public class Priorities {
     public Priorities() {
     }
 
-    //Time Complexity of the algorithm = O(n^2)
+    //Time Complexity of the algorithm getStudent = O(n^2)
     public List<Student> getStudents(List<String> events) {
         StudentComparator studentComparator = new StudentComparator();
         PriorityQueue<Student> studentPriorityQueue = new PriorityQueue<>(events.size(), studentComparator);
@@ -32,7 +32,6 @@ public class Priorities {
         while (!studentPriorityQueue.isEmpty()) {
             studentList.add(studentPriorityQueue.poll());
         }
-        //Collections.reverse(studentList);
 
         return studentList;
     }
